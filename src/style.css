@@ -130,7 +130,7 @@
 }
 
 /* CHAT */
-.message {
+.user-friends {
     overflow: auto;
     width: 100%;
     display: flex;
@@ -167,4 +167,80 @@
 .rigthCol {
     width: 65%;
     height: 100%;
+}
+
+.rigthCol .leftUser img {
+    border-radius: 50%;
+    width: 40px;
+}
+
+.rigthCol .leftUser p:nth-child(2) {
+    color: #B1B1B1;
+}
+
+/* MESSAGEAREA */
+.messageArea {
+    width: 100%;
+    height: calc(100% - 120px);
+    background-image: url(../img/mine.jpg);
+    overflow-y: auto;
+}
+
+.messageContainer {
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.message {
+    width: 40%;
+    background-color: white;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 15px 0 0 15px;
+}
+
+.m-user {
+    align-self: flex-end;
+    background-color: #D5F9BA;
+}
+
+.message p {
+    width: 80%;
+    font-size: 12px;
+}
+
+.message span {
+    width: 100%;
+    font-size: 10px;
+    color: #B1B1B1;
+    display: inline-block;
+    text-align: right;
+    padding-right: 5px;
+}
+
+/* TEXTAREA */
+.textArea {
+    width: 100%;
+    background-color: #FAFAFA;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.textArea i {
+    width: 10%;
+    text-align: center;
+    color: #6B7376;
+    font-size: 20px;
+}
+
+.textArea input {
+    width: 80%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    padding-left: 10px;
 }
