@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="src/style.css">
     <title>BoolZapp</title>
@@ -18,55 +19,38 @@
                         <img src="img/avatar_2.jpg" alt="avatar 2">
                         <p>Agostino</p>
                     </div>
-                    <div class="rigthUser">
-                        <i class="fa-solid fa-circle-notch"></i>
-                        <i class="fa-solid fa-message"></i>
-                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    <div class="rightUser">
+                        <i class="fa-solid fa-circle-notch cursor"></i>
+                        <i class="fa-solid fa-message cursor"></i>
+                        <i class="fa-solid fa-ellipsis-vertical cursor"></i>
                     </div>
                 </div>
                 <div class="notification">
-                    <div class="bell"><i class="fa-solid fa-bell-slash"></i></div>
+                    <div class="bell"><i class="fa-solid fa-bell-slash cursor"></i></div>
                     <div class="sideBell">
                         <p>Ricevi notifiche di nuovi messaggi</p>
                         <a href="#">Attiva notifiche desktop</a>
                     </div>
                 </div>
                 <div class="filter">
-                    <div class="search"><i class="fa-solid fa-magnifying-glass"></i></div>
-                    <input type="text" placeholder="Cerca o inizia una nuova chat">
+                    <div class="search"><i class="fa-solid fa-magnifying-glass cursor"></i></div>
+                    <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="searchText" @keyup="filterContact">
                 </div>
-                <div class="user-friends">
-                    <div class="chat active">
-                        <img src="img/avatar_1.jpg" alt="avatar 1">
-                        <div class="sideAvatar">
-                            <h1>Michele</h1>
-                            <p>Ultimo messaggio arrivato</p>
-                        </div>
-                    </div>
-                    <div class="chat">
-                        <img src="img/avatar_3.jpg" alt="avatar 3">
-                        <div class="sideAvatar">
-                            <h1>Fabio</h1>
-                            <p>Ultimo messaggio arrivato</p>
-                        </div>
-                    </div>
-                    <div class="chat">
-                        <img src="img/avatar_4.jpg" alt="avatar 4">
-                        <div class="sideAvatar">
-                            <h1>Samuele</h1>
-                            <p>Ultimo messaggio arrivato</p>
-                        </div>
-                    </div>
-                    <div class="chat">
-                        <img src="img/avatar_5.jpg" alt="avatar 5">
-                        <div class="sideAvatar">
-                            <h1>Alessandro</h1>
-                            <p>Ultimo messaggio arrivato</p>
+                <!-- Sezione Contatti -->
+                <div class="contacts">
+                    <div class=" cursor" v-for="(contact, index) in contacts" :key="index" :class="{'active' : activeContactIndex === index}" @click="activeChat(index)">
+                        <div v-if="contact.visible" class="contact">
+                            <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="'avatar' + contact.avatar">
+                            <div class="contactInfo">
+                                <h1>{{contact.name}}</h1>
+                                <p>Ultimo messaggio arrivato</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- Fine Sezione Contatti -->
             </div>
-            <div class="rigthCol">
+            <div class="rightCol">
                 <div class="user">
                     <div class="leftUser">
                         <img src="img/avatar_1.jpg" alt="avatar 1">
@@ -75,32 +59,26 @@
                             <p>Ultimo accesso alle ore 12:00</p>
                         </div>
                     </div>
-                    <div class="rigthUser">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <i class="fa-solid fa-paperclip"></i>
-                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    <div class="rightUser">
+                        <i class="fa-solid fa-magnifying-glass cursor"></i>
+                        <i class="fa-solid fa-paperclip cursor"></i>
+                        <i class="fa-solid fa-ellipsis-vertical cursor"></i>
                     </div>
                 </div>
+                <!-- Sezione Messaggi -->
                 <div class="messageArea">
                     <div class="messageContainer">
-                        <div class="message m-user">
-                            <p>Hai portato a spasso il cane?</p>
-                            <span class="time">12:00</span>
-                        </div>
-                        <div class="message m-user">
-                            <p>Ricordati di stendere i panni</p>
-                            <span class="time">12:00</span>
-                        </div>
-                        <div class="message">
-                            <p>Tutto fatto!</p>
-                            <span class="time">12:00</span>
+                        <div class="message" v-for="(messaggio, index) in contacts[activeContactIndex].messages" :class="{'m-user' : messaggio.stutus === sent}">
+                            <p>{{messaggio.message}}</p>
+                            <span class="time">{{messaggio.date}}</span>
                         </div>
                     </div>
                 </div>
+                <!-- Fine Sezione Messaggi -->
                 <div class="textArea">
-                    <i class="fa-solid fa-face-smile"></i>
-                    <input type="text" placeholder="Scrivi un messaggio">
-                    <i class="fa-solid fa-microphone"></i>
+                    <i class="fa-solid fa-face-smile cursor"></i>
+                    <input type="text" placeholder="Scrivi un messaggio" v-model="message" @keyup.enter="sendMessage">
+                    <i class="fa-solid fa-microphone cursor"></i>
                 </div>
             </div>
         </div>

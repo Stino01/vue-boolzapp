@@ -4,8 +4,8 @@
     box-sizing: border-box;
 }
 
-.border {
-    border: 1px solid black;
+.cursor {
+    cursor: pointer;
 }
 
 #app {
@@ -55,13 +55,13 @@
     align-items: center;
 }
 
-.rigthUser {
+.rightUser {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
 }
 
-.rigthUser i {
+.rightUser i {
     color: #B1B1B1;
     padding: 0 10px;
 }
@@ -130,31 +130,31 @@
 }
 
 /* CHAT */
-.user-friends {
+.contacts {
     overflow: auto;
     width: 100%;
     display: flex;
     flex-flow: column nowrap;
 }
 
-.chat {
+.contact {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     padding: 10px 15px;
 }
 
-.chat .sideAvatar{
+.contact .contactInfo{
     padding-left: 10px;
     font-weight: 400;
 }
 
-.chat .sideAvatar h1{
+.contact .contactInfo h1{
     font-size: 16px;
     font-weight: 300;
 }
 
-.chat .sideAvatar p{
+.contact .contactInfo p{
     font-size: 12px;
     color: #B1B1B1;
 }
@@ -163,18 +163,18 @@
     background-color: #E9EBEB;
 }
 
-/* rigth column */
-.rigthCol {
+/* right column */
+.rightCol {
     width: 65%;
     height: 100%;
 }
 
-.rigthCol .leftUser img {
+.rightCol .leftUser img {
     border-radius: 50%;
     width: 40px;
 }
 
-.rigthCol .leftUser p:nth-child(2) {
+.rightCol .leftUser p:nth-child(2) {
     color: #B1B1B1;
 }
 
@@ -194,7 +194,8 @@
 }
 
 .message {
-    width: 40%;
+    min-width: 40%;
+    max-width: 60%;
     background-color: white;
     border-radius: 10px;
     margin: 10px 0;
