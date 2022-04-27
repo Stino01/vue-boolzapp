@@ -43,7 +43,7 @@
                             <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="'avatar' + contact.avatar">
                             <div class="contactInfo">
                                 <h1>{{contact.name}}</h1>
-                                <p>Ultimo messaggio arrivato</p>
+                                <p>{{lastMessage(index)}}</p>
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                 <!-- Sezione Messaggi -->
                 <div class="messageArea">
                     <div class="messageContainer">
-                        <div class="message" v-for="(messaggio, index) in contacts[activeContactIndex].messages" :class="{'m-user' : messaggio.stutus === sent}">
+                        <div class="message" v-for="(messaggio, index) in contacts[activeContactIndex].messages" :class="{'m-user' : messaggio.status === 'sent'}">
                             <p>{{messaggio.message}}</p>
                             <span class="time">{{messaggio.date}}</span>
                         </div>

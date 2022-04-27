@@ -180,14 +180,18 @@ const app = new Vue({
             }
             const responseMessage = {
                 date: dayjs().format('DD/MM/YYYY HH:mm'),
-                message: 'Si',
+                message: 'Ok',
                 status: 'received'
             }
-            this.contacts[this.activeContactIndex].messages.push(newMessage)
-            this.message = ''
-            setTimeout(()=>{
-                this.contacts[this.activeContactIndex].messages.push(responseMessage)
-            },1000)
+            if (this.message === '') {
+                return
+            } else {
+                this.contacts[this.activeContactIndex].messages.push(newMessage)
+                this.message = ''
+                setTimeout(()=>{
+                    this.contacts[this.activeContactIndex].messages.push(responseMessage)
+                },3000)
+            }
         },
         filterContact(){
             this.contacts.forEach((contact)=>{
@@ -197,6 +201,10 @@ const app = new Vue({
                     contact.visible = false
                 }
             })
+        },
+        lastMessage(index){
+           const messageLength = this.contacts[index].messages.length - 1
+           return this.contacts[index].messages[messageLength].message
         }
     }
 })
