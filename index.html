@@ -53,9 +53,9 @@
             <div class="rightCol">
                 <div class="user">
                     <div class="leftUser">
-                        <img src="img/avatar_1.jpg" alt="avatar 1">
+                        <img :src="'img/avatar' + contacts[activeContactIndex].avatar + '.jpg'" :alt="'avatar' + contacts[activeContactIndex].avatar">
                         <div class="sideBell">
-                            <p>Michele</p>
+                            <p>{{contacts[activeContactIndex].name}}</p>
                             <p>Ultimo accesso alle ore 12:00</p>
                         </div>
                     </div>
@@ -68,7 +68,13 @@
                 <!-- Sezione Messaggi -->
                 <div class="messageArea">
                     <div class="messageContainer">
-                        <div class="message" v-for="(messaggio, index) in contacts[activeContactIndex].messages" :class="{'m-user' : messaggio.status === 'sent'}">
+                        <div class="message" v-for="(messaggio, index) in contacts[activeContactIndex]?.messages" :class="{'m-user' : messaggio.status === 'sent'}">
+                            <i class="fa-solid fa-chevron-down down" @click="showMenu(activeContactIndex, index)"></i>
+                            <ul class="dropMenu" :class="{'d-block' : messaggio.display}">
+                                <li>Aggiungi ai preferiti</li>
+                                <li>Copia</li>
+                                <li @click="erase(index)" class="cursor">Elimina il messaggio</li>
+                            </ul>
                             <p>{{messaggio.message}}</p>
                             <span class="time">{{messaggio.date}}</span>
                         </div>
