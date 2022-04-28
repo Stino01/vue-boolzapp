@@ -4,6 +4,18 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg-head: #EAEAEA;
+    --bg-foot: #F3EEEA;
+    --bg-my-message: #D5F9BA;
+    --bg-your-message: #FFF;
+    --bg-notification: #8EDAFC;
+    --bg-filter: #FAFAFA;
+    --bg-contact-hover: #E9EBEB;
+    --bg-contact-active: #D6D6D6;
+    --text-icon: #B1B1B1;
+}
+
 .cursor {
     cursor: pointer;
 }
@@ -12,14 +24,14 @@
     height: 100vh;
     position: relative;
     background: linear-gradient(180deg, rgba(0,150,136,1) 0%, rgba(0,150,136,1) 15%, rgba(218,219,212,1) 15%, rgba(218,219,212,1) 100%);
-    
+    font-family: 'lato', 'sans-serif';
 }
 
 .container {
     width: 80%;
     height: 95vh;
     display: flex;
-    background-color: white;
+    background-color: var(--bg-your-message);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -32,7 +44,7 @@
     height: 100%;
     display: flex;
     flex-flow: column nowrap;
-    border-right: 1px solid #D6D6D6;
+    border-right: 1px solid var(--text-icon);
 }
 
 .leftCol img {
@@ -43,7 +55,7 @@
 /* USER */
 .user {
     width: 100%;
-    background-color: #FAFAFA;
+    background-color: var(--bg-head);
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -62,14 +74,14 @@
 }
 
 .rightUser i {
-    color: #B1B1B1;
+    color: var(--text-icon);
     padding: 0 10px;
 }
 
 /* NOTIFICATION */
 .notification {
     width: 100%;
-    background-color: #8EDAFC;
+    background-color: var(--bg-notification);
     display: flex;
     align-items: center;
 }
@@ -78,7 +90,7 @@
     width: 40px;
     height: 40px;
     margin: 15px 5px 15px 20px;
-    background-color: white;
+    background-color: var(--bg-your-message);
     border: none;
     border-radius: 50%;
     display: flex;
@@ -87,7 +99,7 @@
 }
 
 .bell i {
-    color: #8EDAFC;
+    color: var(--bg-notification);
 }
 
 .sideBell p{
@@ -96,14 +108,14 @@
 
 .sideBell a{
     font-size: 12px;
-    color: #6B90A9;
+    color: var(--text-icon);
 }
 
 
 /* FILTER */
 .filter {
     width: 100%;
-    background-color: #EAEAEA;
+    background-color: var(--bg-filter);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,19 +125,19 @@
 .filter .search {
     width: 15%;
     height: 30px;
-    background-color: white;
+    background-color: var(--bg-your-message);
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #D6D6D6;
-    color: #D6D6D6;
+    border: 1px solid var(--text-icon);
+    color: var(--text-icon);
 }
 
 .filter input {
     width: 85%;
     height: 30px;
     font-size: 12px;
-    border: 1px solid #D6D6D6;
+    border: 1px solid var(--text-icon);
     padding: 5px;
 }
 
@@ -142,6 +154,11 @@
     flex-flow: row nowrap;
     align-items: center;
     padding: 10px 15px;
+    position: relative;
+}
+
+.contact:hover {
+    background-color: var(--bg-contact-hover);
 }
 
 .contact .contactInfo{
@@ -156,11 +173,19 @@
 
 .contact .contactInfo p{
     font-size: 12px;
-    color: #B1B1B1;
+    color: var(--text-icon);
+    font-weight: 300;
 }
 
 .active {
-    background-color: #E9EBEB;
+    background-color: var(--bg-contact-active);
+}
+
+.date {
+    font-size: 10px;
+    color: var(--text-icon);
+    position: absolute;
+    right: 5px;
 }
 
 /* right column */
@@ -175,7 +200,7 @@
 }
 
 .rightCol .leftUser p:nth-child(2) {
-    color: #B1B1B1;
+    color: var(--text-icon);
 }
 
 /* MESSAGEAREA */
@@ -195,7 +220,7 @@
 
 .message {
     width: 40%;
-    background-color: white;
+    background-color: var(--bg-your-message);
     border-radius: 10px;
     margin: 10px 0;
     padding: 15px 0 0 15px;
@@ -204,7 +229,7 @@
 
 .m-user {
     align-self: flex-end;
-    background-color: #D5F9BA;
+    background-color: var(--bg-my-message);
 }
 
 .message p {
@@ -215,7 +240,7 @@
 .message .time {
     width: 100%;
     font-size: 10px;
-    color: #B1B1B1;
+    color: var(--text-icon);
     display: inline-block;
     text-align: right;
     padding-right: 5px;
@@ -236,7 +261,7 @@
     position: absolute;
     right: -2em;
     top: 2em;
-    background-color: white;
+    background-color: var(--bg-your-message);
     border-radius: 10px;
     z-index: 2;
     list-style-type: none;
@@ -249,7 +274,7 @@
 }
 
 .dropMenu li:hover {
-    background-color: #D6D6D6;
+    background-color: var(--bg-contact-hover);
 }
 
 .d-block {
@@ -259,7 +284,7 @@
 /* TEXTAREA */
 .textArea {
     width: 100%;
-    background-color: #FAFAFA;
+    background-color: var(--bg-foot);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -269,7 +294,7 @@
 .textArea i {
     width: 10%;
     text-align: center;
-    color: #6B7376;
+    color: var(--text-icon);
     font-size: 20px;
 }
 

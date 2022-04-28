@@ -237,6 +237,6 @@ const app = new Vue({
         },
         erase(index) {
             this.contacts[this.activeContactIndex].messages.splice(index, 1)
-        }
+        },
     }
 })

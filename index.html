@@ -42,7 +42,7 @@
                         <div v-if="contact.visible" class="contact">
                             <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="'avatar' + contact.avatar">
                             <div class="contactInfo">
-                                <h1>{{contact.name}}</h1>
+                                <h1>{{contact.name}}<span class="date"></span></h1>
                                 <p>{{lastMessage(index)}}</p>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                         <img :src="'img/avatar' + contacts[activeContactIndex].avatar + '.jpg'" :alt="'avatar' + contacts[activeContactIndex].avatar">
                         <div class="sideBell">
                             <p>{{contacts[activeContactIndex].name}}</p>
-                            <p>Ultimo accesso alle ore 12:00</p>
+                            <p>Ultimo accesso</p>
                         </div>
                     </div>
                     <div class="rightUser">
