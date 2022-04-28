@@ -188,6 +188,7 @@ const app = new Vue({
         activeContactIndex: 0,
         searchText: '',
         message: '',
+        
     },
     methods: {
         activeChat(i){
@@ -238,5 +239,15 @@ const app = new Vue({
         erase(index) {
             this.contacts[this.activeContactIndex].messages.splice(index, 1)
         },
+        lastAccess(){
+            console.log(this.activeContactIndex)
+            let last = ''
+            if(this.contacts[this.activeContactIndex].messages.length > 0) {
+                last = this.contacts[this.activeContactIndex].messages.at(-1).date
+            } else {
+                last = ''
+            }
+            return last
+        }
     }
 })

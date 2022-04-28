@@ -24,7 +24,7 @@
     height: 100vh;
     position: relative;
     background: linear-gradient(180deg, rgba(0,150,136,1) 0%, rgba(0,150,136,1) 15%, rgba(218,219,212,1) 15%, rgba(218,219,212,1) 100%);
-    font-family: 'lato', 'sans-serif';
+    font-family: 'Lato', sans-serif;
 }
 
 .container {
