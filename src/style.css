@@ -71,11 +71,35 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
+    position: relative;
 }
 
 .rightUser i {
     color: var(--text-icon);
     padding: 0 10px;
+}
+
+.eraseAll {
+    position: absolute;
+    width: 150px;
+    right: 0;
+    top: 2em;
+    list-style-type: none;
+    border-radius: 10px;
+    background-color: var(--bg-your-message);
+    z-index: 2;
+    display: none;
+}
+
+.eraseAll li {
+    color: black;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.eraseAll li:hover {
+    background-color: var(--bg-contact-hover);
 }
 
 /* NOTIFICATION */

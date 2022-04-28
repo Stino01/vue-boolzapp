@@ -45,7 +45,7 @@
                         <div v-if="contact.visible" class="contact">
                             <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="'avatar' + contact.avatar">
                             <div class="contactInfo">
-                                <h1>{{contact.name}}<span class="date">{{lastAccess()}}</span></h1>
+                                <h1>{{contact.name}}<span class="date">{{lastAccess(index)}}</span></h1>
                                 <p>{{lastMessage(index)}}</p>
                             </div>
                         </div>
@@ -59,19 +59,23 @@
                         <img :src="'img/avatar' + contacts[activeContactIndex].avatar + '.jpg'" :alt="'avatar' + contacts[activeContactIndex].avatar">
                         <div class="sideBell">
                             <p>{{contacts[activeContactIndex].name}}</p>
-                            <p>Ultimo accesso: {{lastAccess()}}</p>
+                            <p>Ultimo accesso: {{lastAccess(activeContactIndex)}}</p>
                         </div>
                     </div>
                     <div class="rightUser">
                         <i class="fa-solid fa-magnifying-glass cursor"></i>
                         <i class="fa-solid fa-paperclip cursor"></i>
-                        <i class="fa-solid fa-ellipsis-vertical cursor"></i>
+                        <i class="fa-solid fa-ellipsis-vertical cursor"  @click="showChat = !showChat"></i>
+                        <ul class="eraseAll" :class="{'d-block' : showChat}">
+                            <li class="cursor" @click="eraseAllMessage()">Elimina messaggi</li>
+                            <li class="cursor" @click="eraseChat()">Elimina chat</li>
+                        </ul>
                     </div>
                 </div>
                 <!-- Sezione Messaggi -->
                 <div class="messageArea">
                     <div class="messageContainer">
-                        <div class="message" v-for="(messaggio, index) in contacts[activeContactIndex]?.messages" :class="{'m-user' : messaggio.status === 'sent'}">
+                        <div class="message" v-for="(messaggio, index) in contacts[activeContactIndex].messages" :class="{'m-user' : messaggio.status === 'sent'}">
                             <i class="fa-solid fa-chevron-down down" @click="showMenu(activeContactIndex, index)"></i>
                             <ul class="dropMenu" :class="{'d-block' : messaggio.display}">
                                 <li>Aggiungi ai preferiti</li>

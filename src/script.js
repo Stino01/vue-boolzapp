@@ -188,6 +188,7 @@ const app = new Vue({
         activeContactIndex: 0,
         searchText: '',
         message: '',
+        showChat: false
         
     },
     methods: {
@@ -198,12 +199,14 @@ const app = new Vue({
             const newMessage = {
                 date: dayjs().format('DD/MM/YYYY HH:mm'),
                 message: this.message,
-                status: 'sent'
+                status: 'sent',
+                display: false
             }
             const responseMessage = {
                 date: dayjs().format('DD/MM/YYYY HH:mm'),
                 message: 'Ok',
-                status: 'received'
+                status: 'received',
+                display: false
             }
             if (this.message === '') {
                 return
@@ -225,8 +228,15 @@ const app = new Vue({
             })
         },
         lastMessage(index){
-           const messageLength = this.contacts[index].messages.length - 1
-           return this.contacts[index].messages[messageLength].message
+            if (index > -1) {
+                let last = ''
+                if(this.contacts[index].messages.length > 0) {
+                    last = this.contacts[index].messages.at(-1).message
+                } else {
+                    last = ''
+                }
+                return last
+            }
         },
         showMenu: function(activeContactIndex, i){
             if (this.contacts[activeContactIndex].messages[i].display === false) {
@@ -239,15 +249,24 @@ const app = new Vue({
         erase(index) {
             this.contacts[this.activeContactIndex].messages.splice(index, 1)
         },
-        lastAccess(){
-            console.log(this.activeContactIndex)
-            let last = ''
-            if(this.contacts[this.activeContactIndex].messages.length > 0) {
-                last = this.contacts[this.activeContactIndex].messages.at(-1).date
-            } else {
-                last = ''
+        eraseAllMessage(){
+            const length = this.contacts[this.activeContactIndex].messages.length
+            this.contacts[this.activeContactIndex].messages.splice(0, length)
+        },
+        eraseChat(){
+
+        },
+        lastAccess(index){
+            if (index > -1) {
+                //console.log(`Contatto attuale ${index} ${this.contacts[index].name}`);
+                let last = ''
+                if(this.contacts[index].messages.length > 0) {
+                    last = this.contacts[index].messages.at(-1).date
+                } else {
+                    last = ''
+                }
+                return last
             }
-            return last
         }
     }
 })
