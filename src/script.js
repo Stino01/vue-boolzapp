@@ -254,7 +254,7 @@ const app = new Vue({
             this.contacts[this.activeContactIndex].messages.splice(0, length)
         },
         eraseChat(){
-
+            this.contacts.splice(this.activeContactIndex, 1)
         },
         lastAccess(index){
             if (index > -1) {
